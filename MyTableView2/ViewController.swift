@@ -8,7 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    @IBOutlet weak var tableview: UITableView!
+    var arr = ["Burger","Fries","Pasta","Rolls"]
+    var img = ["burger","fries","pasta","rolls"]
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        cell.textLabel?.text = "Deepika"
+//        cell.detailTextLabel?.text = "Software Engineer"
+        cell.textLabel?.text = arr[indexPath.row]
+        cell.imageView?.image = UIImage(named: img[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120 
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
